@@ -1,0 +1,242 @@
+/*Dar un buen Cálculos a los Elementos */
+*{
+    box-sizing:border-box;
+}
+/* FUENTE DE LETRA DEL BODY */
+body{
+font-family: 'Poppins', sans-serif;;
+width:100%;
+}
+/*Negrita de Título y Parrafo */
+h1,h2,h5,p{
+    font-weight:bold;
+}
+/* Clase para poner COLOR a un TITULO Quienes Somos */
+.algomas{
+    color: chocolate;
+}
+/*Tamaño del Logo */
+.logo{
+    width:75px;
+    height:85px;
+}
+/*Clase de boostrap Card de Especialista */
+.card{
+    margin:10px;
+    border-top-left-radius: 34px;
+    border-top-right-radius: 60px;
+    border-bottom-right-radius: 18px;
+    border-bottom-left-radius: 34px;
+    background: rgb(255,255,255); /* Old browsers */
+    background: -moz-linear-gradient(45deg,  rgba(255,255,255,1) 0%, rgba(243,243,243,1) 19%, rgba(243,243,243,1) 19%, rgba(237,237,237,1) 38%, rgba(237,237,237,1) 38%, rgba(243,243,243,1) 67%, rgba(243,243,243,1) 67%, rgba(255,255,255,1) 94%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg,  rgba(255,255,255,1) 0%,rgba(243,243,243,1) 19%,rgba(243,243,243,1) 19%,rgba(237,237,237,1) 38%,rgba(237,237,237,1) 38%,rgba(243,243,243,1) 67%,rgba(243,243,243,1) 67%,rgba(255,255,255,1) 94%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg,  rgba(255,255,255,1) 0%,rgba(243,243,243,1) 19%,rgba(243,243,243,1) 19%,rgba(237,237,237,1) 38%,rgba(237,237,237,1) 38%,rgba(243,243,243,1) 67%,rgba(243,243,243,1) 67%,rgba(255,255,255,1) 94%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+.card-img-top{
+    border:dashed 1px blue;
+    border-top-left-radius: 34px;
+    border-top-right-radius: 60px;
+    border-bottom-right-radius: 18px;
+    border-bottom-left-radius: 34px;
+}
+/*Hover de Card Especialista */
+.card:hover{
+    -webkit-transform:scale(1.1);
+    -moz-transform:scale(1.1);
+    -o-transform:scale(1.1);
+    -ms-transform:scale(1.1);
+    transform:scale(1.1)
+}
+/* Icono del card Especialistas*/
+.programador{
+    width:80%;
+    max-width:50%;
+    height:auto;    
+    margin-left: auto;
+    margin-right: auto;
+}
+i.botonredondo{
+    width:50%;
+    border-radius:100px;
+}
+/*Icono del card Escialidades */
+i.botonbordes{
+    -webkit-border-top-left-radius: 45px;
+    -webkit-border-top-right-radius: 10px;
+    -webkit-border-bottom-right-radius: 75px;
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-radius-topleft: 45px;
+    -moz-border-radius-topright: 10px;
+    -moz-border-radius-bottomright: 75px;
+    -moz-border-radius-bottomleft: 10px;
+    border-top-left-radius: 45px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 75px;
+    border-bottom-left-radius: 10px;
+}
+/*mover Imagen */
+.imaghover:hover{
+    -webkit-transformscale(1.1);
+    -moz-transform:scale(1.1);
+    -o-transform:scale(1.1);
+    -ms-transform:scale(1.1);
+    transform:scale(1.1)
+}
+/* Subrayado de Servicios de Especialista */
+.subrayado{
+	border:2px  inset ;
+    background: rgb(226,226,226); /* Old browsers */
+    background: -moz-linear-gradient(-45deg,  rgba(226,226,226,1) 0%, rgba(219,219,219,1) 50%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg,  rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg,  rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */  
+    -webkit-border-top-left-radius: 100px;
+    -webkit-border-top-right-radius: 56px;
+    -webkit-border-bottom-right-radius: 25px;
+    -webkit-border-bottom-left-radius: 50px;
+    -moz-border-radius-topleft: 100px;
+    -moz-border-radius-topright: 56px;
+    -moz-border-radius-bottomright: 25px;
+    -moz-border-radius-bottomleft: 50px;
+    border-top-left-radius: 100px;
+    border-top-right-radius: 56px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 50px;
+}
+/*Es un pseudoelemnto para cambiar de color LOS LINK a
+mover puede cambiar la LETRA de los LINK */
+.mover{
+    color:white;
+    padding:5px;
+}
+
+/*TODOS LOS DIV DEBEN SER EN LINEA */
+nav{
+    /* border-radius:10px;
+    position: fixed;
+    height: 100%; */
+    box-shadow: 1px 1px 1px 1px rgb(254,255,255);
+}
+.colorNav{
+    background-color: #e3f2fd;
+}
+.aBlack {
+    font-weight:bold;
+}
+/* ARTICULO SOMOS */
+.article_somos{
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 1px 2px 2px 1px #000;
+    transform:rotate(0deg);
+}
+/* FORMULARIO DEL EJERCICIO*/
+.form_principal{
+    display:inline-block;
+    border-radius:20px;
+    border:dashed 1px blue;
+    margin-right:20px;
+}
+/*IMPUT DEL FORMULARIO */
+.block1,input{
+    display:block;
+}
+
+.margen_boton_enviar{
+    margin-top: 10px;
+}
+/*Configuracion del fondo del formulario en contacto.html  */
+section.fondo_formulario{
+    background:#e6dcd4;
+    border:dotted 1px;
+    border-radius:5px;
+}
+/* Ocultar Formulario de Contacto */
+.ocultar{
+    display:none;
+}
+/* Aparecer Formulario de Contacto */
+.aparecer{
+    display:block;
+    scroll-behavior:initial;
+}
+/* FORMULARIO DEL EJERCICIO*/
+.form_principal{
+    display:block;
+    border: 2px double;
+    box-shadow:1px 0px 13px 0px rgba(30, 125, 204, 0.72);
+    margin-right:10px;
+    margin-left:10px;
+    padding:5px;
+    border-radius:5px;
+}
+/*IMPUT DEL FORMULARIO */
+.block1,input{
+    display:block;
+}
+/* CONFIGURACION DEL FOOTER DEL FOOTER */
+footer p{
+    color: rgb(255, 255, 255);
+    }
+/* CONFIGURACION DEL FOOTER */
+.footer_config{
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 1px 2px 1px 1px #000;
+    background-color:rgb(40,52,59);
+    padding:5px;
+}
+/* CONFIGURACION DEL MARGEN DEL PIE DE PAGINA EN PARRAFO(p) */
+.footer_config,p{
+    margin:10px;
+}
+.footerfechareloj{
+    color:white;
+}
+/* CONFIGURACIÓN DE CARUSELS BOTONES */
+.colores{
+    background-color:rgb(35,64,127);
+    border-radius:25px;
+    box-shadow:0px 4px 12px 0px rgba(219, 229, 244, 0.75);
+    border: 1px double;
+}
+/* Configuración de Imagenes de Slider */
+.ClaseImagenesSlider{
+    border-radius: 25px;
+    border-bottom-left-radius: 90px;
+    border:dashed 1px blue;
+    width:100%;
+    height:50%;
+}
+.negrita{
+    font-weight: bold;
+}
+/* Css Botón de Arriba*/
+.ir-arriba {
+	display:none;
+	padding:10px;
+    background: rgb(84,163,238); /* Old browsers */
+    background: -moz-linear-gradient(45deg,  rgba(84,163,238,1) 50%, rgba(54,144,240,1) 51%, rgba(30,105,222,1) 72%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg,  rgba(84,163,238,1) 50%,rgba(54,144,240,1) 51%,rgba(30,105,222,1) 72%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg,  rgba(84,163,238,1) 50%,rgba(54,144,240,1) 51%,rgba(30,105,222,1) 72%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#54a3ee', endColorstr='#1e69de',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	font-size:20px;
+	color:#fff;
+	cursor:pointer;
+	position: fixed;
+	bottom:20px;
+	right:20px;
+    border-radius:100px;
+    box-shadow: 0px 4px 5px 0px rgba(8,8,247,1);
+}
+/* Css Botón:hover del mouse */
+/* .ir-arriba:hover{
+    opacity: 0.9;
+}
+[class^="col"]:nth-child(even){
+    background-color: teal;
+    }
+    [class^="col"]:nth-child(odd){
+    background-color: orange;
+} */

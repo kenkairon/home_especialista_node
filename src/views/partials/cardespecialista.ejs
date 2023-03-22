@@ -1,0 +1,19 @@
+        <!--Empieza la sección Card de Especialista ACA EL FOREACH-->
+    <section class="container-fluid" id="servicios">
+        <h2>Servicios por Especialista</h2><hr class="subrayado">
+        <div class="row alert alert-light">
+            <!--Grid de Boostrap5.2 de las columnas iconos del avatar  https://www.iconfinder.com/-->
+            <% detalles.forEach (function(botones){ %>
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body d-grid gap-2 mx-auto col-xl-10 col-lg-10 col-md-8 col-sm-7 col-10">
+                        <i class="<%=botones.iconoclaseboton %>"></i><hr><i class="<%=botones.iconoclaseboton2 %>"><img src="<%=botones.imagen1 %>" class="programador img-responsive " alt="programadores"><img src="<%=botones.imagen2 %>" class=" programador img-responsive " alt="gasfiter"></i>
+                        <h5 class="card-title"><%=botones.profesion%></h5>
+                        <a href="#" class="btn btn-outline-success">Buscar <i class="bi bi-search"></i></a>
+                    </div>
+                </div>
+            </div>
+            <% }); %>
+        </div>
+    </section>
+    

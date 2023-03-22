@@ -1,0 +1,45 @@
+<!-- Sección Contáctanos por Whatsapp-->
+<section class="container-fluid">
+  <div class="row alert alert-warning">
+    <div class=" col-sm-1 col-md-2 col-lg-4 col-xl-6"></div>
+    <div class="col-6 col-sm-7 col-md-5 col-lg-3 col-xl-3"><p>Contáctanos </p></div>
+    <!--icono de boostra con botón success conectado a través de la api de whatsapp con número propio-->
+    <div class="col-6 col-sm-4 col-md-3 col-lg-5 col-xl-3"><a  class="btn btn-success" href="https://api.whatsapp.com/send?phone=56979347247"><i class="bi bi-whatsapp"></i>  Whatsapp</a></div>
+  </div>
+</section>
+<!-- FIn de  Sección Contáctanos por Whatsapp-->
+<!-- Sección Contáctanos-->
+<section class="container-fluid" id="contacto">
+  <div class="row alert alert-secondary">
+    <div class=" col-sm-1 col-md-1 col-lg-2 col-xl-5"></div>
+    <div class="col-6 col-sm-7 col-md-6 col-lg-5 col-xl-4"><p>Contáctanos por formulario</p></div>
+    <div class="col-6 col-sm-4 col-md-3 col-lg-5 col-xl-3"><button  class="btn btn-primary" id="contacto_boton"><i class="bi bi-layout-text-window-reverse"></i> Contacto</button></div>
+  </div>
+</section>
+<!--Formato de mensaje-->
+<div id="mensaje" class="container"></div>
+<!--Fin de Sección de Contáctanos-->
+<!--Sección de Formulario de Contacto con id de sectio_contacto a través de contacto.js .addClass('aparecer'); y que esta en css .aparecer = displlay:block-->
+<section class="row container-fluid fondo_formulario ocultar" id="section_contacto">
+  <article class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-12">
+        <hr>
+        <h5>FORMULARIO DE CONTACTO</h5>
+        <hr>
+    <!-- Trabajamos con la funcion validarFormulario() a través del id= "contacto-form" en js contactos.js-->          
+    <form id="contact-form" onsubmit="return validarFormulario()" action="index.html#contacto" method="GET">
+      <div class="mb-6">
+        <label class="form-label">Nombre de Usuario</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Ingrese el usuario">
+      </div><br>
+      <div class="mb-6">
+        <label  class="form-label">Correo</label>
+        <input type="email" class="form-control" id="email" name="email"  placeholder="Ingrese el correo">
+      </div><br>
+      <div class="mb-6">
+        <label class="form-label">mensaje</label>
+        <textarea class="form-control" id="message" name="message" rows="3"></textarea>
+      </div><br>
+      <input type="submit" id="button" class="btn btn-info" value="Enviar Email" ><hr>
+  </form>
+  </article>
+</section>

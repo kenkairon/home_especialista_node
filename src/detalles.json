@@ -1,0 +1,44 @@
+[
+    {
+        "iconoclaseboton": "botonbordes bi bi-wrench-adjustable btn btn-primary",
+        "iconoclaseboton2": "botonbordes btn btn-light",
+        "imagen1":"https://cdn2.iconfinder.com/data/icons/male-avatars/512/avatars_accounts___man_male_people_person_hoodie_casual_child_boy.png",
+        "imagen2":"https://cdn2.iconfinder.com/data/icons/female-avatars-4/512/avatars_accounts___female_woman_people_person_hoodie_short_hair_earring.png",
+        "profesion":"Gasfitería"
+    },
+    {
+        "iconoclaseboton": "botonbordes bi bi-rulers btn btn-dark",
+        "iconoclaseboton2": "botonbordes btn btn-light",
+        "imagen1":"https://cdn2.iconfinder.com/data/icons/male-avatars/512/avatars_accounts___man_male_people_person_curly_hair_beard_facial_hair_suit.png",
+        "imagen2":"https://cdn2.iconfinder.com/data/icons/female-avatars-4/512/avatars_accounts___woman_female_person_people_glasses_nerd_geek_hoodie_casual.png",
+        "profesion":"Carpintería"
+    },
+    {
+        "iconoclaseboton": "botonbordes bi bi-plugin btn btn-info",
+        "iconoclaseboton2": "botonbordes btn btn-light",
+        "imagen1":"https://cdn2.iconfinder.com/data/icons/female-avatars-4/512/avatars_accounts___woman_female_person_people_african_long_hair_glasses_round_glasses_necklace_pearl_necklace.png",
+        "imagen2":"https://cdn2.iconfinder.com/data/icons/male-avatars/512/avatars_accounts___man_male_people_person_fashion_style_sunglasses_glasses_wavy_hair.png",
+        "profesion":"Electricistas"
+    },
+    {
+        "iconoclaseboton": "botonbordes bi bi-phone-flip btn btn-info",
+        "iconoclaseboton2": "botonbordes btn btn-light",
+        "imagen1":"https://cdn2.iconfinder.com/data/icons/female-avatars-4/512/avatars_accounts___woman_female_person_people_broken_glasses_glasses_curly_shirt.png",
+        "imagen2":"https://cdn2.iconfinder.com/data/icons/male-avatars/512/avatars_accounts___man_male_people_person_glasses_neat_hairstyle_beard.png",
+        "profesion":"Servicio Técnico"
+    },
+    {
+        "iconoclaseboton": "botonbordes bi bi-house-heart-fill btn btn-danger",
+        "iconoclaseboton2": "botonbordes btn btn-light",
+        "imagen1":"https://cdn2.iconfinder.com/data/icons/male-avatars/512/avatars_accounts___man_male_people_person_cardigan_t-shirt_tshirt.png",
+        "imagen2":"https://cdn2.iconfinder.com/data/icons/female-avatars-4/512/avatars_accounts___female_woman_person_people_necklace_earrings_buns_sweater.png",
+        "profesion":"Asesores del Hogar"
+    },
+    {
+        "iconoclaseboton": "botonbordes bi bi-server btn btn-primary",
+        "iconoclaseboton2": "botonbordes btn btn-light",
+        "imagen1":"https://cdn2.iconfinder.com/data/icons/female-avatars-4/512/avatars_accounts___woman_female_glasses_nerd_geek_necklace_earrings_long_hair.png",
+        "imagen2":"https://cdn2.iconfinder.com/data/icons/male-avatars/512/avatars_accounts___man_male_people_person_curly_hair_sunglasses_beard_hoodie.png",
+        "profesion":"Programadores Web"
+    }
+]
