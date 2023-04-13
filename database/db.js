@@ -11,7 +11,7 @@ conexion.connect((error) => {
         console.error('El error de conexión es: ' + error);
     return;
     }
-    console.log('¡Conectado a la Base de Datos!');
+    console.log('¡Conectado a la Base de Datos con Amazon Web Service!');
 });
 //Exportar la base de datos
 module.exports = conexion;
