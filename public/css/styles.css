@@ -1,0 +1,25 @@
+/* Estilos boton color lila */
+.btn-bd-primary{
+    -webkit-border-radius: 45px;
+    -moz-border-radius: 45px;
+    border-radius: 45px;
+    font-weight:600;color:#fff;background-color:#F09819;border-color:#F09819}
+.btn-bd-primary:hover,.btn-bd-primary:active{color:#fff;background-color:#f5af19;border-color:#f5af19}
+.btn-bd-primary:focus{box-shadow:0 0 0 3px rgba(121,82,179,0.25)}
+
+.btn-bd-info{
+    -webkit-border-radius: 45px;
+    -moz-border-radius: 45px;
+    border-radius: 45px;
+    font-weight:600;color:#fff;background-color:#1c92d2;border-color:#1c92d2}
+.btn-bd-primary:hover,.btn-bd-primary:active{color:#fff;background-color:#f5af19;border-color:#f5af19}
+.btn-bd-primary:focus{box-shadow:0 0 0 3px rgba(121,82,179,0.25)}
+
+.btn-bd-danger{
+    -webkit-border-radius: 45px;
+    -moz-border-radius: 45px;
+    border-radius: 45px;
+    font-weight:600;color:#fff;background-color:#c31432;border-color:#c31432}
+.btn-bd-primary:hover,.btn-bd-primary:active{color:#fff;background-color:#f5af19;border-color:#f5af19}
+.btn-bd-primary:focus{box-shadow:0 0 0 3px rgba(121,82,179,0.25)}
+
