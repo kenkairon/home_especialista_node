@@ -21,6 +21,7 @@ const crud2 = require('../controllers/crud2');
 const  crudregion = require('../controllers/crudregion');
 //llamamos los controladores del crud.js
 const crudcomuna = require('../controllers/crudcomuna');
+const crudpersona = require('../controllers/crudPersona');
 router.get('/dashboard',authController.isAuthenticated, (req, res)=>{
 
     res.render('dashboard.ejs', {user: req.username});
@@ -184,8 +185,10 @@ router.get('/createcomuna', async (req, res) => {
 router.get('/updatecomuna/:id', async (req, res) => {
   const idComuna = req.params.id;
   try {
-      const resul = await conexion.query('SELECT * FROM comuna WHERE id=$1', [idComuna]);
-      const results = await conexion.query('SELECT c.id, c.nombre AS comuna, r.id AS region_id, r.nombre AS region FROM comuna c JOIN region r ON c.region_id = r.id WHERE c.id=$1 ORDER BY c.id ASC', [idComuna]);
+      const consultaJoin ='SELECT c.id, c.nombre AS comuna, r.id AS region_id, r.nombre AS region FROM comuna c JOIN region r ON c.region_id = r.id WHERE c.id=$1 ORDER BY c.id ASC'
+      const consultaComunas = 'SELECT * FROM comuna WHERE id=$1'
+      const resul = await conexion.query(consultaComunas, [idComuna]);
+      const results = await conexion.query(consultaJoin, [idComuna]);
       console.log(resul)
       res.render('editcomuna.ejs', { comuna: resul.rows, regiones: results.rows });
   } catch (error) {
@@ -194,21 +197,34 @@ router.get('/updatecomuna/:id', async (req, res) => {
 });
 //--------------------------------------------------
 router.get('/createpersona', async (req, res) => {
-  try {   
-    res.render('createpersona.ejs');
+  try {
+    const consulta_comuna ='SELECT * from comuna'
+    const consulta_regiones = 'SELECT * from region'
+    const resul = await conexion.query(consulta_comuna);
+    const result = await conexion.query(consulta_regiones);
+    console.log(result);
+    res.render('createpersona.ejs', { comuna: resul.rows, region: result.rows });
   } catch (error) {
-      throw error;
+    throw error;
   }
-})
+});
+
 // crearla rut get de persona
 router.get('/persona', async (req, res) => {
   //
   try {
-      const results = await conexion.query('SELECT * FROM  persona ORDER BY id ASC');
+      const results = await conexion.query('SELECT persona.id, persona.rut, persona.nombre, persona.apellido, persona.fechanacimiento,persona.correo, persona.direccion, comuna.nombre as nombre_comuna, region.nombre as nombre_region FROM persona JOIN comuna ON persona.comuna_id = comuna.id JOIN region ON persona.region_id = region.id ORDER BY persona.id ASC;');
       res.render('personas.ejs', { personas: results.rows});
   } catch (error) {
       throw error;
   }
+});
+// profesiones del crud de profesional ingreso
+router.post('/createpersona',crud.save, (req, res)=> {
+
+});
+// profesiones del crud de perfil ingreso
+router.post('/updatepersona',crud2.update, (req, res)=> {
 });
 
 router.get('/login', (req, res)=>{

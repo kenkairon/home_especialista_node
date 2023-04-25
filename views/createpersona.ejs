@@ -12,37 +12,51 @@
     <div class="card border-secondary">
         <div class="card-header">Nuevo Registro</div>
         <div class="card-body">
-            <form action="" method="POST">
+            <form action="/createpersona" method="POST" >
                     <div class="mb-3">
-                        <label for="rut">RUT:</label>
-                        <input type="text" id="rut" name="rut" maxlength="12" class="form-control" required>
+                        <label for="txtRut">RUT:</label>
+                        <input type="text" id="txtRut" name="txtRut" maxlength="12" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label for="nombre">Nombre:</label>
-                        <input type="text" id="nombre" name="nombre" maxlength="100" class="form-control" required>
+                        <label for="txtNombre">Nombre:</label>
+                        <input type="text" id="txtNombre" name="txtNombre" maxlength="100" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label for="apellido">Apellido:</label>
-                        <input type="text" id="apellido" name="apellido" maxlength="100" class="form-control" required>
+                        <label for="txtApellido">Apellido:</label>
+                        <input type="text" id="txtApellido" name="txtApellido" maxlength="100" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label for="fechanacimiento">Fecha de Nacimiento:</label>
-                        <input type="date" id="fechanacimiento" name="fechanacimiento" class="form-control" required>
+                        <label for="txtFechanacimiento">Fecha de Nacimiento:</label>
+                        <input type="date" id="txtFechanacimiento" name="txtFechanacimiento" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label for="correo">Correo Electrónico:</label>
-                        <input type="email" id="correo" name="correo" maxlength="100" class="form-control" required>
+                        <label for="txtCorreo">Correo Electrónico:</label>
+                        <input type="email" id="txtCorreo" name="txtCorreo" maxlength="100" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label for="direccion">Dirección:</label>
-                        <input type="text" id="direccion" name="direccion" maxlength="100" class="form-control" required>
+                        <label for="txtDireccion">Dirección:</label>
+                        <input type="text" id="txtDireccion" name="txtDireccion" maxlength="100" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label for="comuna_id">Comuna ID:</label>
-                        <input type="number" id="comuna_id" name="comuna_id" class="form-control" required>
+                        <label for="txtComuna_id">Comuna </label>
+                        <select id="txtComuna" name="txtComuna" class="form-select" required>
+                            <option value="">Seleccione una opción</option>
+                            <% comuna.forEach(function(com) { %>
+                                <option value="<%= com.id %>"><%= com.nombre %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="comuna_id">Comuna </label>
+                        <select id="txtRegion" name="txtRegion" class="form-select" required>
+                            <option value="">Seleccione una opción</option>
+                            <% region.forEach(function(re) { %>
+                                <option value="<%= re.id %>"><%= re.nombre %></option>
+                            <% }) %>
+                        </select>
                     </div>
                     <button type="submit" class="btn btn-primary" tabindex="5">Guardar</button>
-                    <a href="" class="btn btn-secondary">Cancelar</a>
+                    <a href="/persona" class="btn btn-secondary">Cancelar</a>
             </form>
         </div>
     </div>

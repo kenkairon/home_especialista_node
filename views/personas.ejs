@@ -44,7 +44,8 @@
             <th>Fecha de Nacimiento</th>
             <th>Correo Electrónico</th>
             <th>Dirección</th>
-            <th>Comuna ID</th>
+            <th>Comuna</th>
+            <th>Región</th>
             <th>Configuración</th>
         </tr>
     </thead>
@@ -58,7 +59,8 @@
             <td><%= persona.fechanacimiento.toDateString() %></td>
             <td><%= persona.correo %></td>
             <td><%= persona.direccion %></td>
-            <td><%= persona.comuna_id %></td>
+            <td><%= persona.nombre_comuna %></td>
+            <td><%= persona.nombre_region %></td>
             <td>
                 <a href="/updatepersona/<%= persona.id %>"  class="btn btn-outline-primary">Editar<i class="bi bi-pen"></i></a>
                 <a href="/delete4/<%= persona.id %>" class="btn btn-outline-danger">Borrar<i class="bi bi-x-octagon"></i></a>
