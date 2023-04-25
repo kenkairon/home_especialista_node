@@ -220,11 +220,11 @@ router.get('/persona', async (req, res) => {
   }
 });
 // profesiones del crud de profesional ingreso
-router.post('/createpersona',crud.save, (req, res)=> {
+router.post('/createpersona',crudpersona.save, (req, res)=> {
 
 });
 // profesiones del crud de perfil ingreso
-router.post('/updatepersona',crud2.update, (req, res)=> {
+router.post('/updatepersona',crudpersona.update, (req, res)=> {
 });
 
 router.get('/login', (req, res)=>{
