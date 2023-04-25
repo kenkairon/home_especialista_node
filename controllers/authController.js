@@ -11,7 +11,7 @@ exports.register = async (req, res) => {
         const pass = req.body.pass
         let passHash = await bcryptjs.hash(pass, 8)
 
-        await conexion.query('INSERT INTO users (username,email, pass) VALUES ($1, $2, $3)', [name, user, passHash])
+        await conexion.query('INSERT INTO usuarios (username,email, pass) VALUES ($1, $2, $3)', [name, user, passHash])
         res.redirect('/login')
     } catch (error) {
         console.log(error)
@@ -34,7 +34,7 @@ exports.login = async (req, res) => {
                 ruta: 'login'
             })
         } else {
-            const results = await conexion.query('SELECT * FROM users WHERE email = $1', [user])
+            const results = await conexion.query('SELECT * FROM usuarios WHERE email = $1', [user])
             if (results.rowCount === 0 || !(await bcryptjs.compare(pass, results.rows[0].pass))) {
                 res.render('login.ejs', {
                     alert: true,
@@ -80,7 +80,7 @@ exports.isAuthenticated = async (req, res, next) => {
     if (req.cookies.jwt) {
         try {
             const decodificada = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO)
-            const results = await conexion.query('SELECT * FROM users WHERE id = $1', [decodificada.id])
+            const results = await conexion.query('SELECT * FROM usuarios WHERE id = $1', [decodificada.id])
             if (!results.rowCount) {
                 return next()
             }
@@ -99,4 +99,6 @@ exports.logout = (req, res)=>{
     res.clearCookie('jwt')
     return res.redirect('/')
 }
+
+
 

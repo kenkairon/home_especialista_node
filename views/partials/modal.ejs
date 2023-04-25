@@ -1,0 +1,30 @@
+<hr>
+<button type="button" class="btn-md btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="bi bi-person-fill-add"></i> Agregar Datos Adicionales</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Registro de Autores</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+            <div class="container mt-4">
+                <div class="card border-secondary">
+                    <div class="card-header">Nuevo Registro</div>
+                    <div class="card-body">
+                      <form action="/create" method="POST">                    
+                            <div class="mb-3">
+                                <label for="user" class="form-label">Profesion</label>
+                                <input type="text" class="form-control" id="txtNombre" name="txtNombre" tabindex="1"> 
+                            </div>
+                            <button type="submit" class="btn btn-primary" tabindex="5">Guardar</button>
+                            <a href="/create" class="btn btn-secondary">Cancelar</a>
+                        </form>
+                    </div>
+                </div>       
+            </div>       
+      </div> 
+    </div>
+  </div>
+</div>

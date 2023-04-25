@@ -1,0 +1,50 @@
+<hr>
+<button type="button" class="btn-md btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="bi bi-person-fill-add"></i>Especialistas</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Registro</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="container mt-4">
+                <div class="card border-secondary">
+                    <div class="card-header">Nuevo Registro</div>
+                    <div class="card-body">
+                    <form action="/perfil" method="POST">
+                            <div class="mb-3">
+                                <label for="user" class="form-label">nombre</label>
+                                <input type="text" class="form-control" id="txtNombre" name="txtNombre" tabindex="1">
+                            </div>
+                            <div class="mb-3">
+                                <label for="user" class="form-label">apellido</label>
+                                <input type="text" class="form-control" id="txtApellido" name="txtApellido" tabindex="1">
+                            </div>
+                            <div class="mb-3">
+                                <label for="user" class="form-label">telefono</label>
+                                <input type="text" class="form-control" id="txtTelefono" name="txtTelefono" tabindex="1">
+                            </div>
+                            <div class="mb-3">
+                                <label for="user" class="form-label">Correo</label>
+                                <input type="text" class="form-control" id="txtCorreo" name="txtCorreo" tabindex="1">
+                            </div>
+                            <div class="mb-3">
+                                <label for="user" class="form-label">direccion</label>
+                                <input type="text" class="form-control" id="txtDireccion" name="txtDireccion" tabindex="1">
+                            </div>
+                            <div class="mb-3">
+                                <label for="user" class="form-label">ciudad</label>
+                                <input type="text" class="form-control" id="txtCiudad" name="txtCiudad" tabindex="1">
+                            </div>
+                            <button type="submit" class="btn btn-primary" tabindex="5">Guardar</button>
+                            <a href="/perfil" class="btn btn-secondary">Cancelar</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>
+  </div>
+</div>

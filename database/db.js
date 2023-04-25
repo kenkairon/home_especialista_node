@@ -1,17 +1,22 @@
 const { Pool } = require('pg');
+
+// Crear la instancia del Pool de conexiones
 const conexion = new Pool({
     user: process.env.DB_USER,
     host: process.env.DB_HOST,
-    database:process.env.DB_DATABASE,
-    password:process.env.DB_PASSWORD,
-    port:process.env.DB_PUERTO
+    database: process.env.DB_DATABASE,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PUERTO
 });
-conexion.connect((error) => {
+
+// Realizar una consulta a la base de datos para verificar la conexión
+conexion.query('SELECT NOW()', (error, resultado) => {
     if (error) {
-        console.error('El error de conexión es: ' + error);
-    return;
+        console.error('Error al conectar a la base de datos:', error);
+        return;
     }
-    console.log('¡Conectado a la Base de Datos con Amazon Web Service!');
+    console.log('¡Conexión exitosa a la base de datos con Amazon Web Service!');
 });
-//Exportar la base de datos
+
+// Exportar la instancia del Pool de conexiones
 module.exports = conexion;

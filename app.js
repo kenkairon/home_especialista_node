@@ -3,7 +3,26 @@ const app = express();
 const path = require('path');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
+// sirven para los mensajes
+const flash = require('connect-flash');
+const session = require('express-session');
 
+
+
+//empezar un sesion
+app.use(session({
+	secret:'12348',
+	resave:false,
+	saveUninitialized:false
+}));
+
+// Configuración de express-flash y session sirven para la configuracion de mensajes
+app.use(flash());
+
+app.use((req, res, next) => {
+    app.locals.messages = req.flash('success');
+next();
+});
 //Servidor
 app.set('port',3000);
 app.set('views',path.join(__dirname,'views'));
