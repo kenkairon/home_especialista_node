@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Formulario de Ingreso de Persona</title>
+</head>
+<body>
+  <h1>Formulario de Ingreso de Persona</h1>
+  <form action="guardar_persona.php" method="post">
+    <label for="rut">RUT:</label>
+    <input type="text" id="rut" name="rut" maxlength="12" required><br><br>
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" maxlength="100" required><br><br>
+    <label for="apellido">Apellido:</label>
+    <input type="text" id="apellido" name="apellido" maxlength="100" required><br><br>
+    <label for="fechanacimiento">Fecha de Nacimiento:</label>
+    <input type="date" id="fechanacimiento" name="fechanacimiento" required><br><br>
+    <label for="correo">Correo Electrónico:</label>
+    <input type="email" id="correo" name="correo" maxlength="100" required><br><br>
+    <label for="direccion">Dirección:</label>
+    <input type="text" id="direccion" name="direccion" maxlength="100" required><br><br>
+    <label for="comuna_id">Comuna ID:</label>
+    <input type="number" id="comuna_id" name="comuna_id" required><br><br>
+    <input type="submit" value="Guardar">
+  </form>
+</body>
+</html>
+
+
+
+
+
+
+
