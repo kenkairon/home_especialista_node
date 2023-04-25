@@ -192,6 +192,24 @@ router.get('/updatecomuna/:id', async (req, res) => {
       throw error;
   }
 });
+//--------------------------------------------------
+router.get('/createpersona', async (req, res) => {
+  try {   
+    res.render('createpersona.ejs');
+  } catch (error) {
+      throw error;
+  }
+})
+// crearla rut get de persona
+router.get('/persona', async (req, res) => {
+  //
+  try {
+      const results = await conexion.query('SELECT * FROM  persona ORDER BY id ASC');
+      res.render('personas.ejs', { personas: results.rows});
+  } catch (error) {
+      throw error;
+  }
+});
 
 router.get('/login', (req, res)=>{
   res.render('login.ejs', {alert:false})
