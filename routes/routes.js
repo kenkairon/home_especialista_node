@@ -39,7 +39,7 @@ router.get('/create', async (req, res) => {
 //---------------------------------------------------------------------------------------
 //ruta para editar los registros
 
-router.get('/edit/:id', async (req, res) => {
+router.get('/edit2/:id', async (req, res) => {
     const id = req.params.id;
     try {
         const results = await conexion.query('SELECT * FROM profesiones WHERE id=$1', [id]);
@@ -213,7 +213,7 @@ router.get('/createpersona', async (req, res) => {
 router.get('/persona', async (req, res) => {
   //
   try {
-      const results = await conexion.query('SELECT persona.id, persona.rut, persona.nombre, persona.apellido, persona.fechanacimiento,persona.correo, persona.direccion, comuna.nombre as nombre_comuna, region.nombre as nombre_region FROM persona JOIN comuna ON persona.comuna_id = comuna.id JOIN region ON persona.region_id = region.id ORDER BY persona.id ASC;');
+      const results = await conexion.query('SELECT persona.id, persona.rut, persona.nombre, persona.apellido, persona.fechanacimiento,persona.correo, persona.direccion, comuna.nombre as nombre_comuna, region.nombre as nombre_region FROM persona JOIN comuna ON persona.comuna_id = comuna.id JOIN region ON persona.region_id = region.id ORDER BY persona.id ASC');
       res.render('personas.ejs', { personas: results.rows});
   } catch (error) {
       throw error;
@@ -226,7 +226,20 @@ router.post('/createpersona',crudpersona.save, (req, res)=> {
 // profesiones del crud de perfil ingreso
 router.post('/updatepersona',crudpersona.update, (req, res)=> {
 });
-
+router.get('/updatepersona/:id', async (req, res) => {
+  const idPersona = req.params.id;
+  console.log(idPersona);
+  try {
+      const resultados = await conexion.query('SELECT * from comuna');
+      const resulta = await conexion.query('SELECT * from region');
+      const resul = await conexion.query('SELECT id, rut, nombre, apellido, fechanacimiento, correo, direccion, comuna_id, region_id FROM persona', [idPersona]);
+      console.log(resul.rows);
+      
+      res.render('editpersona.ejs', { personas: resul.rows, comuna:resultados.rows, region:resulta.rows});
+  } catch (error) {
+      throw error;
+  }
+});
 router.get('/login', (req, res)=>{
   res.render('login.ejs', {alert:false})
 })
