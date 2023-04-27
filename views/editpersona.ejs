@@ -29,7 +29,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="txtFechanacimiento">Fecha de Nacimiento:</label>
-                        <input type="date" id="txtFechanacimiento" name="txtFechanacimiento" class="form-control" value="<%=perso.fechanacimiento %>"  required>
+                        <input type="text" id="txtFechanacimiento" name="txtFechanacimiento" class="form-control" value="<%=perso.fechanacimiento.toDateString() %>"  required>
                     </div>
                     <div class="mb-3">
                         <label for="txtCorreo">Correo Electrónico:</label>
@@ -42,7 +42,6 @@
                     <div class="mb-3">
                         <label for="txtComuna_id">Comuna </label>
                         <select id="txtComuna" name="txtComuna" class="form-select" required>
-                            
                             <% comuna.forEach(function(com) { %>
                                 <option value="<%= perso.id %>"><%= com.nombre %></option>
                             <% }) %>
@@ -51,7 +50,6 @@
                     <div class="mb-3">
                         <label for="comuna_id">Región </label>
                         <select id="txtRegion" name="txtRegion" class="form-select" required>
-                          
                             <% region.forEach(function(re) { %>
                                 <option value="<%= perso.id %>"><%= re.nombre %></option>
                             <% }) %>

@@ -38,20 +38,20 @@
                         <input type="text" id="txtDireccion" name="txtDireccion" maxlength="100" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label for="txtComuna_id">Comuna </label>
-                        <select id="txtComuna" name="txtComuna" class="form-select" required>
-                            <option value="">Seleccione una opción</option>
-                            <% comuna.forEach(function(com) { %>
-                                <option value="<%= com.id %>"><%= com.nombre %></option>
-                            <% }) %>
-                        </select>
-                    </div>
-                    <div class="mb-3">
                         <label for="comuna_id">Región </label>
                         <select id="txtRegion" name="txtRegion" class="form-select" required>
                             <option value="">Seleccione una opción</option>
                             <% region.forEach(function(re) { %>
                                 <option value="<%= re.id %>"><%= re.nombre %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="txtComuna_id">Comuna </label>
+                        <select id="txtComuna" name="txtComuna" class="form-select" required>
+                            <option value="" selected>Seleccione una opción</option>
+                            <% comuna.forEach(function(com) { %>
+                                <option value="<%= com.id %>"><%= com.nombre %></option>
                             <% }) %>
                         </select>
                     </div>
@@ -63,4 +63,5 @@
 </div>
 </body>
 </html>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>

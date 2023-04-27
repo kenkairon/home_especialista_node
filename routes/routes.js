@@ -8,10 +8,13 @@ const detalles= JSON.parse(fs.readFileSync('detalles.json', 'utf8'));
 // invocamos al módulo de la conexión es ;
 const conexion = require('../database/db');
 
+
+
 // Se le indica la ruta index.ejs rut con card y json
 router.get('/',(req,res) => {
   res.render('index.ejs',{detalles})
 });
+
 
 const authController =require('../controllers/authController');
 const crud = require('../controllers/crud');
@@ -23,18 +26,19 @@ const  crudregion = require('../controllers/crudregion');
 const crudcomuna = require('../controllers/crudcomuna');
 const crudpersona = require('../controllers/crudPersona');
 router.get('/dashboard',authController.isAuthenticated, (req, res)=>{
-
+  
     res.render('dashboard.ejs', {user: req.username});
 
 })
 // Creamos la ruta de agregar datos adicionales----------------------------------------
 router.get('/create', async (req, res) => {
-  try {
-      const results = await conexion.query('SELECT * FROM profesiones ORDER BY id ASC');
-      res.render('create.ejs', { results: results.rows});
-  } catch (error) {
-      throw error;
-  }
+      // const results = await conexion.query('SELECT * FROM profesiones ORDER BY id ASC'); si voy a mandar u bacti id
+    try{
+        const results = await conexion.query('SELECT * FROM profesiones ORDER BY id ASC');
+        res.render('create.ejs', { resultado: results.rows });
+    }catch(error){
+      throw error
+    }
 });
 //---------------------------------------------------------------------------------------
 //ruta para editar los registros
@@ -49,6 +53,9 @@ router.get('/edit2/:id', async (req, res) => {
     }
 });
 //-----------------------------------------------------------------------------------------
+// profesiones del crud de profesional ingreso
+router.post('/create',crud.save, (req, res)=> {
+});
 //crud para actualizar
 router.post('/update', crud.update);
 //ruta de Eliminación
@@ -65,59 +72,16 @@ router.get('/delete/:id',async (req, res) => {
     }
 
 });
-// profesiones del crud de profesional ingreso
-router.post('/create',crud.save, (req, res)=> {
-
-});
-// profesiones del crud de perfil ingreso
-router.post('/perfil',crud2.save, (req, res)=> {
-});
-// Creamos la ruta de agregar datos de perfil
-router.get('/perfil', async (req, res) => {
-  //
-  try {
-      const results = await conexion.query('SELECT * FROM  perfil ORDER BY id ASC');
-      res.render('create2.ejs', { results: results.rows});
-  } catch (error) {
-      throw error;
-  }
-});
-//------------------crud para actualizar perfil-----------
-router.post('/update2', crud2.update);
-//Seleccionar id
-router.get('/edit2/:id', async (req, res) => {
-  const id = req.params.id;
-  try {
-      const results = await conexion.query('SELECT * FROM perfil WHERE id=$1', [id]);
-      res.render('edit2.ejs', { resu: results.rows });
-  } catch (error) {
-      throw error;
-  }
-});
-//-----------------------------------------------------------
-//ruta para eliminar perfil
-router.get('/delete2/:id',async (req, res) => {
-  const id = req.params.id;
-  try {
-      resultado = await conexion.query('DELETE FROM perfil WHERE id = $1',[id]);
-      if(resultado = true){
-          req.flash('success', 'Eliminado Correctamente')
-          res.redirect('/perfil');
-      }
-  }catch(error){
-      throw error;
-  }
-});
 //-------------------------------------------------
 router.get('/createingresoregion', async (req, res) => {
-  try {   
+  try {
     res.render('createregiones.ejs');
   } catch (error) {
       throw error;
   }
 })
 // Creamos el ingreso de mantenedor de regiones--------Selección de la tabla -------enviando la results a la vista region.ejs
-router.get('/createregion', async (req, res) => { 
+router.get('/createregion', async (req, res) => {
   try {
       const results = await conexion.query('SELECT * FROM region ORDER BY id ASC');
       console.log(results)
@@ -130,6 +94,7 @@ router.get('/createregion', async (req, res) => {
 // creamos la ruta /create de la tabla profesiones del crud de profesional sirve para ingresar de a acuerdo .save que viene el controlador crud
 router.post('/createregion',crudregion.save, (req, res)=> {
 });
+//Actualizamos el crud
 router.post('/updateregion', crudregion.update);
 //Seleccionar id
 router.get('/updateregion/:id', async (req, res) => {
@@ -139,19 +104,6 @@ router.get('/updateregion/:id', async (req, res) => {
       console.log(resul)
       res.render('editregion.ejs',{regio:resul.rows});
   } catch (error) {
-      throw error;
-  }
-});
-
-router.get('/delete3/:id',async (req, res) => {
-  const id = req.params.id;
-  try {
-      resultado = await conexion.query('DELETE FROM region WHERE id = $1',[id]);
-      if(resultado = true){
-          req.flash('success', 'Eliminado Correctamente')
-          res.redirect('/createregion');
-      }
-  }catch(error){
       throw error;
   }
 });
@@ -165,16 +117,18 @@ router.get('/createingresocomuna', async (req, res) => {
   } catch (error) {
       throw error;
   }
-})
-
+});
 //------------------------------------------------------------
-//ingreso comuna
+//ingreso comuna de la tabla
 router.post('/createcomuna',crudcomuna.save, (req, res)=> {
+});
+//Update comuna
+router.post('/updatecomuna',crudcomuna.update, (req, res)=> {
 });
 // Creamos el ingreso de mantenedor de regiones--------Selección de la tabla -------enviando la results a la vista region.ejs
 router.get('/createcomuna', async (req, res) => {
   try {
-      const results = await conexion.query('SELECT c.id, c.nombre AS comuna, r.nombre AS region FROM comuna c JOIN region r ON c.region_id = r.id  ORDER BY id ASC;');
+      const results = await conexion.query('SELECT * FROM comuna  ORDER BY id ASC');
       console.log(results)
       res.render('comuna.ejs',{comuna:results.rows});
   } catch (error) {
@@ -185,12 +139,8 @@ router.get('/createcomuna', async (req, res) => {
 router.get('/updatecomuna/:id', async (req, res) => {
   const idComuna = req.params.id;
   try {
-      const consultaJoin ='SELECT c.id, c.nombre AS comuna, r.id AS region_id, r.nombre AS region FROM comuna c JOIN region r ON c.region_id = r.id WHERE c.id=$1 ORDER BY c.id ASC'
-      const consultaComunas = 'SELECT * FROM comuna WHERE id=$1'
-      const resul = await conexion.query(consultaComunas, [idComuna]);
-      const results = await conexion.query(consultaJoin, [idComuna]);
-      console.log(resul)
-      res.render('editcomuna.ejs', { comuna: resul.rows, regiones: results.rows });
+      const results = await conexion.query('select * FROM comuna WHERE id=$1', [idComuna]);
+      res.render('editcomuna.ejs', { comuna: results.rows });
   } catch (error) {
       throw error;
   }
@@ -198,17 +148,14 @@ router.get('/updatecomuna/:id', async (req, res) => {
 //--------------------------------------------------
 router.get('/createpersona', async (req, res) => {
   try {
-    const consulta_comuna ='SELECT * from comuna'
-    const consulta_regiones = 'SELECT * from region'
-    const resul = await conexion.query(consulta_comuna);
-    const result = await conexion.query(consulta_regiones);
+    const resul = await conexion.query('SELECT * from comuna');
+    const result = await conexion.query('SELECT * from region');
     console.log(result);
     res.render('createpersona.ejs', { comuna: resul.rows, region: result.rows });
   } catch (error) {
     throw error;
   }
 });
-
 // crearla rut get de persona
 router.get('/persona', async (req, res) => {
   //
@@ -221,20 +168,17 @@ router.get('/persona', async (req, res) => {
 });
 // profesiones del crud de profesional ingreso
 router.post('/createpersona',crudpersona.save, (req, res)=> {
-
 });
 // profesiones del crud de perfil ingreso
 router.post('/updatepersona',crudpersona.update, (req, res)=> {
 });
 router.get('/updatepersona/:id', async (req, res) => {
   const idPersona = req.params.id;
-  console.log(idPersona);
   try {
       const resultados = await conexion.query('SELECT * from comuna');
       const resulta = await conexion.query('SELECT * from region');
-      const resul = await conexion.query('SELECT id, rut, nombre, apellido, fechanacimiento, correo, direccion, comuna_id, region_id FROM persona', [idPersona]);
-      console.log(resul.rows);
-      
+      const resul = await conexion.query('SELECT persona.id, persona.rut, persona.nombre, persona.apellido, persona.fechanacimiento,persona.correo, persona.direccion, comuna.nombre as nombre_comuna, region.nombre as nombre_region FROM persona JOIN comuna ON persona.comuna_id = comuna.id JOIN region ON persona.region_id = region.id WHERE persona.id =$1', [idPersona]);
+
       res.render('editpersona.ejs', { personas: resul.rows, comuna:resultados.rows, region:resulta.rows});
   } catch (error) {
       throw error;
@@ -250,9 +194,6 @@ router.get('/register', (req, res)=>{
 router.post('/register', authController.register)
 router.post('/login', authController.login)
 router.get('/logout', authController.logout)
-
-
-
 
 module.exports = router;
 

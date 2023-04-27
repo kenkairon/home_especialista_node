@@ -15,7 +15,7 @@ conexion.query('SELECT NOW()', (error, resultado) => {
         console.error('Error al conectar a la base de datos:', error);
         return;
     }
-    console.log('¡Conexión exitosa a la base de datos con Amazon Web Service!');
+    console.log('¡Conexión exitosa a la base de datos');
 });
 
 // Exportar la instancia del Pool de conexiones

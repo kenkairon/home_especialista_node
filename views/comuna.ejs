@@ -25,7 +25,8 @@
     <% }) %>
 <% } %>
 <div class="container row">
-    <div class="col-md-4"><a href="/createingresocomuna" class=" btn-lg btn btn-outline-primary"><i class="bi bi-person-fill-add"></i> Agregar Comuna</a></div>   
+    <hr>
+    <div class="col-md-4"><a href="/createingresocomuna" class=" btn-md btn btn-outline-primary"><i class="bi bi-person-fill-add"></i> Agregar Comuna</a></div>   
 </div><hr>
 <div class="col-sm-6"><input class="form-control" type="text" id="inputNombre" placeholder="Buscar por Nombre..."></div>
 <div class="constainer"><hr>
@@ -40,7 +41,6 @@
             <tr class="bg-primary text-white border">
                 <th>id</th>
                 <th>comuna</th>
-                <th>Región</th>
                 <th>Configuración</th>
             </tr>
         </thead>
@@ -48,11 +48,10 @@
         <% comuna.forEach((com)=>{ %>
             <tr>
                 <td><%= com.id %></td>
-                <td><%= com.comuna %></td>
-                <td><%= com.region%></td>
+                <td><%= com.nombre %></td>
                 <td>
-                    <!-- <a href="/updatecomuna/<%= com.id %>"  class="btn btn-outline-primary" disabled>Editar<i class="bi bi-pen"></i></a>
-                    <a href="/delete/<%= com.id %>" class="btn btn-outline-danger" disabled>Borrar<i class="bi bi-x-octagon"></i></a> -->
+                    <a href="/updatecomuna/<%= com.id %>"  class="btn btn-outline-primary" disabled>Editar<i class="bi bi-pen"></i></a>
+                    <a href="/delete/<%= com.id %>" class="btn btn-outline-danger" disabled>Borrar<i class="bi bi-x-octagon"></i></a> 
                 </td>
             </tr>
         <% }) %>

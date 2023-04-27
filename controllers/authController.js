@@ -59,7 +59,7 @@ exports.login = async (req, res) => {
                     expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
                     httpOnly: true
                 }
-                res.cookie('jwt', token, cookiesOptions)                
+                res.cookie('jwt', token, cookiesOptions)
                 res.render('login.ejs', {
                     alert: true,
                     alertTitle: "Conexión exitosa",

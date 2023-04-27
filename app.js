@@ -6,7 +6,9 @@ const cookieParser = require('cookie-parser');
 // sirven para los mensajes
 const flash = require('connect-flash');
 const session = require('express-session');
-
+var methodOverride = require('method-override');
+//middleware de Express que permite utilizar otros métodos HTTP además de GET y POST,PUT,DELETE
+app.use(methodOverride("_method", { methods: ["GET", "POST"] }));
 
 
 //empezar un sesion
@@ -45,7 +47,9 @@ app.use(cookieParser());
 
 
 //rutas
-app.use(require('./routes/routes'))
+//llamamanos al router
+app.use('/', require('./routes/routes'))
+
 
 //static
 app.use(express.static(path.join(__dirname,'public')));
