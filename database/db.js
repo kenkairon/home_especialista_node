@@ -1,3 +1,4 @@
+//llamamos la variable al pool 
 const { Pool } = require('pg');
 
 // Crear la instancia del Pool de conexiones

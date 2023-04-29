@@ -1,5 +1,6 @@
+// exportamos la base de datos
 const conexion= require('../database/db');
-
+//exportamos el crud de persona y insertamos personas
 exports.save = (req,res)=>{
     const rut= req.body.txtRut;
     const nombre = req.body.txtNombre;
@@ -18,6 +19,7 @@ exports.save = (req,res)=>{
         }
       })
 }
+//exportamos el crud de actualizacion de personas
 exports.update = (req, res) => {
     const id = req.body.txtId;
     const rut= req.body.txtRut;

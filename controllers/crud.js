@@ -1,5 +1,5 @@
 const conexion= require('../database/db');
-
+//exportamos el crud de profesores
 exports.save = (req,res)=>{
     const nombre= req.body.txtNombre;
     conexion.query('INSERT INTO profesiones (nombre) VALUES ($1) RETURNING *', [nombre], (error, results) => {
@@ -11,6 +11,7 @@ exports.save = (req,res)=>{
         }
       })
 }
+//exportamos el update de profesores
 exports.update = (req, res) => {
     const id = req.body.txtId;
     const nombre= req.body.txtNombre;

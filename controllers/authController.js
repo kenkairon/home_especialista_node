@@ -1,5 +1,8 @@
+// llamado de jwt
 const jwt = require('jsonwebtoken')
+//llamado bcryptjs
 const bcryptjs = require('bcryptjs')
+//conexión a la base de datos
 const conexion = require('../database/db')
 const { promisify } = require('util')
 
@@ -17,7 +20,7 @@ exports.register = async (req, res) => {
         console.log(error)
     }
 }
-
+// exporta login
 exports.login = async (req, res) => {
     try {
         const user = req.body.email
@@ -75,7 +78,7 @@ exports.login = async (req, res) => {
         console.log(error)
     }
 }
-
+// exportamos la autentificación
 exports.isAuthenticated = async (req, res, next) => {
     if (req.cookies.jwt) {
         try {
@@ -94,7 +97,7 @@ exports.isAuthenticated = async (req, res, next) => {
         res.redirect('/')
     }
 }
-
+// exportamos el logouts
 exports.logout = (req, res)=>{
     res.clearCookie('jwt')
     return res.redirect('/')

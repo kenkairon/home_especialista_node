@@ -1,6 +1,8 @@
+//configuracion de rutas
 const {Router} = require('express');
 const router = Router();
 
+//configuracion de file
 const fs = require('fs');
 // Se Parcea el json detalle.json
 const detalles= JSON.parse(fs.readFileSync('detalles.json', 'utf8'));
@@ -8,15 +10,14 @@ const detalles= JSON.parse(fs.readFileSync('detalles.json', 'utf8'));
 // invocamos al módulo de la conexión es ;
 const conexion = require('../database/db');
 
-
-
 // Se le indica la ruta index.ejs rut con card y json
 router.get('/',(req,res) => {
   res.render('index.ejs',{detalles})
 });
 
-
+// requerimos controlador del login
 const authController =require('../controllers/authController');
+//crud de mantenedor
 const crud = require('../controllers/crud');
 //lamammos los controladors del crud2.ejs
 const crud2 = require('../controllers/crud2');
@@ -44,7 +45,7 @@ router.get('/create', async (req, res) => {
 });
 //---------------------------------------------------------------------------------------
 
-// copia RENDERIZA A FORMULARIO CON DATOS CARGADOS PARA EDITAR
+// FROND RENDERIZA A FORMULARIO CON DATOS CARGADOS PARA EDITAR 
 router.get('/edit/:id', async(req,res)=>{
   const {id} =  req.params;
   
@@ -66,24 +67,10 @@ router.get('/edit/:id', async(req,res)=>{
 // profesiones del crud de profesional ingreso
 router.post('/create',crud.save, (req, res)=> {
 });
-// Actualizar profesiones
-// router.put("/edit/:id", async (req, res) => {
-//    /*  const resultado = await pool.query("select * from productos"); */
-//     const { nombre } = req.body;
-//     const body = {nombre: nombre}
-
-//   const resultado = await fetch(`http://localhost:5007/api/v1/profe/${id}`,
-//   {method: "put",
-//   body: JSON.stringify(body),
-//   headers: { "Content-Type": "application/json"}
-// });
-// const data = await resultado.json();
-// res.redirect("/create")});
-//-----------------------------------------------------------------------------------------
 
 //crud para actualizar
 router.post('/update', crud.update);
-//ruta de Eliminación
+//ruta de Eliminación tipo FROND 
 router.delete('/delete/:id', async(req,res)=>{
     const {id} =  req.params;
     await fetch(`http://localhost:5007/api/v1/profe/${id}`,
@@ -93,6 +80,7 @@ router.delete('/delete/:id', async(req,res)=>{
     });
   })
 //-------------------------------------------------
+//crear ingreso de region
 router.get('/createingresoregion', async (req, res) => {
   try {
     res.render('createregiones.ejs');
@@ -128,7 +116,7 @@ router.get('/updateregion/:id', async (req, res) => {
   }
 });
 //--------------------------------------------------------------------------------------
-
+// ingreso de comuna
 router.get('/createingresocomuna', async (req, res) => {
   try {
     const results = await conexion.query('SELECT * FROM region');
@@ -165,7 +153,7 @@ router.get('/updatecomuna/:id', async (req, res) => {
       throw error;
   }
 });
-//--------------------------------------------------
+//---ingreso de personas
 router.get('/createpersona', async (req, res) => {
   try {
     const resul = await conexion.query('SELECT * from comuna');
@@ -192,6 +180,7 @@ router.post('/createpersona',crudpersona.save, (req, res)=> {
 // profesiones del crud de perfil ingreso
 router.post('/updatepersona',crudpersona.update, (req, res)=> {
 });
+// personas actualizar
 router.get('/updatepersona/:id', async (req, res) => {
   const idPersona = req.params.id;
   try {
@@ -204,6 +193,7 @@ router.get('/updatepersona/:id', async (req, res) => {
       throw error;
   }
 });
+// Eliminar persona
 router.get('/delete/:id',async (req, res) => {
   const id = req.params.id;
   try {
@@ -215,17 +205,20 @@ router.get('/delete/:id',async (req, res) => {
   }catch(error){
       throw error;
   }
-
 });
+// ruta login
 router.get('/login', (req, res)=>{
   res.render('login.ejs', {alert:false})
 })
+//ruta de registro
 router.get('/register', (req, res)=>{
   res.render('register.ejs')
 })
 //router para los métodos del controller
 router.post('/register', authController.register)
+//rota para login llamando controlador
 router.post('/login', authController.login)
+//rut de login llamado de cerrar sesión
 router.get('/logout', authController.logout)
 
 module.exports = router;
