@@ -26,52 +26,72 @@ const  crudregion = require('../controllers/crudregion');
 const crudcomuna = require('../controllers/crudcomuna');
 const crudpersona = require('../controllers/crudPersona');
 router.get('/dashboard',authController.isAuthenticated, (req, res)=>{
-  
+
     res.render('dashboard.ejs', {user: req.username});
 
 })
+//FROND
 // Creamos la ruta de agregar datos adicionales----------------------------------------
 router.get('/create', async (req, res) => {
       // const results = await conexion.query('SELECT * FROM profesiones ORDER BY id ASC'); si voy a mandar u bacti id
     try{
-        const results = await conexion.query('SELECT * FROM profesiones ORDER BY id ASC');
-        res.render('create.ejs', { resultado: results.rows });
+      const resultado = await fetch(`http://localhost:5007/api/v1/profe`);
+      const data = await resultado.json();
+        res.render('create.ejs', { resultado:data });
     }catch(error){
       throw error
     }
 });
 //---------------------------------------------------------------------------------------
-//ruta para editar los registros
 
-router.get('/edit2/:id', async (req, res) => {
-    const id = req.params.id;
-    try {
-        const results = await conexion.query('SELECT * FROM profesiones WHERE id=$1', [id]);
-        res.render('edit.ejs', { results: results.rows });
-    } catch (error) {
-        throw error;
+// copia RENDERIZA A FORMULARIO CON DATOS CARGADOS PARA EDITAR
+router.get('/edit/:id', async(req,res)=>{
+  const {id} =  req.params;
+  
+  try {
+    const results = await fetch(`http://localhost:5007/api/v1/profe/${id}`, {
+      headers: { "Content-Type": "application/json" }
+    });
+    const data = await results.json();
+    if (!data) {
+      res.status(404).send('Not found');
+      return;
     }
+    res.render("edit.ejs", { results: data });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server Error');
+  }
 });
-//-----------------------------------------------------------------------------------------
 // profesiones del crud de profesional ingreso
 router.post('/create',crud.save, (req, res)=> {
 });
+// Actualizar profesiones
+// router.put("/edit/:id", async (req, res) => {
+//    /*  const resultado = await pool.query("select * from productos"); */
+//     const { nombre } = req.body;
+//     const body = {nombre: nombre}
+
+//   const resultado = await fetch(`http://localhost:5007/api/v1/profe/${id}`,
+//   {method: "put",
+//   body: JSON.stringify(body),
+//   headers: { "Content-Type": "application/json"}
+// });
+// const data = await resultado.json();
+// res.redirect("/create")});
+//-----------------------------------------------------------------------------------------
+
 //crud para actualizar
 router.post('/update', crud.update);
 //ruta de Eliminación
-router.get('/delete/:id',async (req, res) => {
-    const id = req.params.id;
-    try {
-        resultado = await conexion.query('DELETE FROM profesiones WHERE id = $1',[id]);
-        if(resultado = true){
-            req.flash('success', 'Eliminado Correctamente')
-            res.redirect('/create');
-        }
-    }catch(error){
-        throw error;
-    }
-
-});
+router.delete('/delete/:id', async(req,res)=>{
+    const {id} =  req.params;
+    await fetch(`http://localhost:5007/api/v1/profe/${id}`,
+    {
+      method: "delete",
+      headers: { "Content-Type": "application/json" }
+    });
+  })
 //-------------------------------------------------
 router.get('/createingresoregion', async (req, res) => {
   try {
@@ -139,7 +159,7 @@ router.get('/createcomuna', async (req, res) => {
 router.get('/updatecomuna/:id', async (req, res) => {
   const idComuna = req.params.id;
   try {
-      const results = await conexion.query('select * FROM comuna WHERE id=$1', [idComuna]);
+      const results = await conexion.query('SELECT * FROM comuna WHERE id=$1', [idComuna]);
       res.render('editcomuna.ejs', { comuna: results.rows });
   } catch (error) {
       throw error;
@@ -183,6 +203,19 @@ router.get('/updatepersona/:id', async (req, res) => {
   } catch (error) {
       throw error;
   }
+});
+router.get('/delete/:id',async (req, res) => {
+  const id = req.params.id;
+  try {
+      resultado = await conexion.query('DELETE FROM persona WHERE id = $1',[id]);
+      if(resultado = true){
+          req.flash('success', 'Eliminado Correctamente')
+          res.redirect('/persona');
+      }
+  }catch(error){
+      throw error;
+  }
+
 });
 router.get('/login', (req, res)=>{
   res.render('login.ejs', {alert:false})

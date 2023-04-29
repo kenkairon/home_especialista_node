@@ -12,7 +12,7 @@
         <div class="card border-secondary">
             <div class="card-header">Editar Registro</div>
             <div class="card-body">
-                <% resu.forEach((edit)=>{ %>
+                <% resultado.forEach((edit)=>{ %>
                     <form action="/update2" method="POST">
                         <input id="txtId" name="txtId" value="<%=edit.id %>" hidden>
                         <div class="mb-3">

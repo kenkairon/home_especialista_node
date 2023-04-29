@@ -10,7 +10,26 @@
 <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-</head>
+<style>
+.custom-swal .swal-title {
+        color: #dc3545;
+        font-size:20px;
+        font-weight: bold;  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f6f8f9+0,e5ebee+50,d7dee3+51,f5f7f9+100;White+Gloss */
+background: rgb(246,248,249); /* Old browsers */
+background: -moz-linear-gradient(-45deg,  rgba(246,248,249,1) 0%, rgba(229,235,238,1) 50%, rgba(215,222,227,1) 51%, rgba(245,247,249,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg,  rgba(246,248,249,1) 0%,rgba(229,235,238,1) 50%,rgba(215,222,227,1) 51%,rgba(245,247,249,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg,  rgba(246,248,249,1) 0%,rgba(229,235,238,1) 50%,rgba(215,222,227,1) 51%,rgba(245,247,249,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f8f9', endColorstr='#f5f7f9',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */ background: linear-gradient(45deg, rgba(246,248,249,1) 0%,rgba(229,235,238,1) 50%,rgba(215,222,227,1) 51%,rgba(245,247,249,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */       
+    }
+    
+    .custom-swal .swal-text {
+        color: #6c757d;
+    }    
+    .custom-swal .swal-button {
+        font-weight: bold;
+        
+    }
+    </style>
 </head>
 <body class="container">
 <%-include('partials/navdash') %>
@@ -33,13 +52,11 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         <% }%>
-    
     <table class="table table-bordered table-striped table-hover text-center mt-4 border border-light table" id="example">
-        
         <thead>
             <tr class="bg-primary text-white border">
-                <th>id</th>               
-                <th>profesión</th> 
+                <th>id</th>
+                <th>profesión</th>
                 <th>Configuración</th>
             </tr>
         </thead>
@@ -47,11 +64,10 @@
         <% resultado.forEach((mov)=>{ %>
             <tr>
                 <td><%= mov.id %></td>
-                <td><%= mov.nombre %></td> 
-               
+                <td><%= mov.nombre %></td>
                 <td>
-                    <a href="/edit2/<%= mov.id %>"  class="btn btn-outline-primary">Editar<i class="bi bi-pen"></i></a>
-                    <a href="/delete/<%= mov.id %>" class="btn btn-outline-danger">Borrar <i class="bi bi-x-octagon"></i></a>
+                    <a href="/edit/<%= mov.id %>"  class="btn btn-outline-primary">Editar<i class="bi bi-pen"></i></a>
+                    <button class="btn btn-outline-danger" onclick="confirmDelete('<%= mov.id %>')">Borrar <i class="bi bi-x-octagon"></i></button>
                 </td>
             </tr>
         <% }) %>
@@ -72,6 +88,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 /*Esta línea de código utiliza el método querySelector() del objeto document para obtener una referencia
 al elemento HTML con el ID inputNombre. Este elemento es un campo de entrada (input) donde el usuario puede ingresar un número de RUT.*/
@@ -105,8 +122,38 @@ inputNombre.addEventListener('input',buscarPorRut);
         });
     }
 </script>
-
-
-
+<script>
+    function confirmDelete(id) {
+        swal({
+            title: "¿Está seguro que desea eliminar este registro?",
+            text: "Esta acción no se puede deshacer",
+            icon: "warning",
+            buttons: {
+                cancel: {
+                    text: "Cancelar",
+                    visible: true,
+                    className: "btn btn-primary",
+                    closeModal: true,
+                },
+                confirm: {
+                    text: "Eliminar",
+                    className: "btn btn-danger",
+                    closeModal: false,
+                },
+            },
+            dangerMode: true,
+            closeOnClickOutside: false,
+            closeOnEsc: false,
+            className: "custom-swal",
+            confirmButtonColor: "#dc3545",
+            cancelButtonColor: "#6c757d",
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                window.location.href = `/delete/${id}?_method=delete`;
+            }
+        });
+    }
+    </script>
 </body>
 </html>

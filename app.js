@@ -9,6 +9,7 @@ const session = require('express-session');
 var methodOverride = require('method-override');
 //middleware de Express que permite utilizar otros métodos HTTP además de GET y POST,PUT,DELETE
 app.use(methodOverride("_method", { methods: ["GET", "POST"] }));
+const swal = require('sweetalert2');
 
 
 //empezar un sesion
@@ -54,7 +55,7 @@ app.use('/', require('./routes/routes'))
 //static
 app.use(express.static(path.join(__dirname,'public')));
 
-//Para eliminar la cache 
+//Para eliminar la cache
 app.use(function(req, res, next) {
     if (!req.user)
         res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');

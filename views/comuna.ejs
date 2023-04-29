@@ -51,7 +51,7 @@
                 <td><%= com.nombre %></td>
                 <td>
                     <a href="/updatecomuna/<%= com.id %>"  class="btn btn-outline-primary" disabled>Editar<i class="bi bi-pen"></i></a>
-                    <a href="/delete/<%= com.id %>" class="btn btn-outline-danger" disabled>Borrar<i class="bi bi-x-octagon"></i></a> 
+                    <!-- <a href="/delete/<%= com.id %>" class="btn btn-outline-danger" disabled>Borrar<i class="bi bi-x-octagon"></i></a>  -->
                 </td>
             </tr>
         <% }) %>
@@ -106,8 +106,5 @@ inputNombre.addEventListener('input',buscarPorRut);
         });
     }
 </script>
-
-
-
 </body>
 </html>

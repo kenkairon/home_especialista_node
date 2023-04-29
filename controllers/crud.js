@@ -14,8 +14,6 @@ exports.save = (req,res)=>{
 exports.update = (req, res) => {
     const id = req.body.txtId;
     const nombre= req.body.txtNombre;
-    console.log(id);
-    console.log(nombre);
     conexion.query('UPDATE profesiones SET nombre=$1  WHERE id=$2',[nombre,id], (error, result) => {
       if (error) {
         console.log(error);
